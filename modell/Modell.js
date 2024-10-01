@@ -4,34 +4,31 @@ export default class Modell {
 
     this.listaFeltolt();
   }
-  listaFeltolt() {
-    if (this.#Lista.length<1) {
-      for (let index = 0; index < 20; index++) {
-        let szam = Math.random() * 11;
-        if (szam <= 3) {
-          this.#Lista[index] = "😈";
-        } else {
-          this.#Lista[index] = "👻";
+
+    listaFeltolt() {
+      if (this.#Lista.length < 1) {
+        for (let index = 0; index < 20; index++) {
+          const szam = Math.random() * 11;
+          this.#Lista[index] = szam <= 3 ? "😈" : "👻";
         }
       }
     }
 
-  }
   getLista() {
     return this.#Lista;
   }
   listaFeololvas() {
     let txt = "";
-    for (let index = 0; index < this.#Lista.length(); index++) {
+    for (let index = 0; index < this.#Lista.length; index++) {
       txt += `${index}.elem: ${this.#Lista[index]}`;
     }
     return txt;
   }
   listaBizonyosEleme(elem) {
-    if (this.#Lista[elem] === "😈") {
-      return "Elvitt az ördög!";
+    if (elem >= 0 && elem < this.#Lista.length) {
+      return this.#Lista[elem] === "😈" ? "Elvitt az ördög!" : "Megmentettek a jó lelkek!";
     } else {
-      return "Megmentettek a jó lelkek!";
+      return "Érvénytelen elem!";
     }
   }
 }
