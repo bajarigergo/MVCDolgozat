@@ -1,16 +1,19 @@
 export default class Kartya {
   #SzuloElem;
   #Jel;
+  #index
   kattintElem;
-  constructor(SzuloElem, Jel) {
+  constructor(SzuloElem, Jel,index) {
     this.#SzuloElem = SzuloElem;
     this.#Jel = Jel;
-    kartyaMegjelenit();
-    kattint = $("kartya");
+    this.#index=index
+    this.kartyaMegjelenit();
+    this.kattintElem = $(".kartya:last");
+    this.esemenykezelo()
   }
-  kartyaMegjelenit() {
+  kartyaMegjelenit() {    
     let txt = `
-    <div class="card kartya" style="width: 18rem;">
+    <div class="card kartya">
             <h1>🔍</h1>
         <div class="card-body">
             <p class="card-text">Kattints Rám</p>
@@ -19,10 +22,12 @@ export default class Kartya {
     this.#SzuloElem.append(txt);
   }
   esemenykezelo() {
-    kattint.on("click", (event) => {
-      const esemeny = new CustomEvent();
+    this.kattintElem.on("click", (event) => {
+      console.log(this.#index);
+      const esemeny = new CustomEvent("kivalaszt", {
+        detail: this.#index,
+      });
       window.dispatchEvent(esemeny);
-      return event.detail;
     });
   }
 }

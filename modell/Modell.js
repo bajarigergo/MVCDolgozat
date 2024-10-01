@@ -1,17 +1,21 @@
 export default class Modell {
-  #Lista;
+  #Lista=[];
   constructor() {
+
     this.listaFeltolt();
   }
   listaFeltolt() {
-    for (let index = 0; index < 20; index++) {
-      let szam = Math.random() * 11;
-      if (szam <= 3) {
-        this.#Lista[index] = "😈";
-      } else {
-        this.#Lista[index] = "👻";
+    if (this.#Lista.length<1) {
+      for (let index = 0; index < 20; index++) {
+        let szam = Math.random() * 11;
+        if (szam <= 3) {
+          this.#Lista[index] = "😈";
+        } else {
+          this.#Lista[index] = "👻";
+        }
       }
     }
+
   }
   getLista() {
     return this.#Lista;
